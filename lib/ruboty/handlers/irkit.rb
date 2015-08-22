@@ -1,6 +1,5 @@
 require "json"
-require "open-uri"
-require "irkit"
+require "httparty"
 
 module Ruboty
   module Handlers
@@ -50,7 +49,7 @@ module Ruboty
       end
 
       def irkit
-        @irkit ||= IRKit::InternetAPI.new(
+        @irkit ||= Ruboty::Irkit::Client.new(
           clientkey: ENV["IRKIT_CLIENTKEY"],
           deviceid: ENV["IRKIT_DEVICEID"],
         )
@@ -61,7 +60,8 @@ module Ruboty
       end
 
       def load
-        JSON.parse(open(ENV["IRKIT_JSON_URL"]).read)["IR"]
+        response = HTTParty.get(ENV["IRKIT_JSON_URL"], follow_redirects: true)
+        JSON.parse(response.body)["IR"]
       end
     end
   end

@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Ruboty Handler for IRKit"
   spec.description   = spec.summary
-    spec.homepage      = "https://github.com/yoshiori/ruboty-irkit"
+  spec.homepage      = "https://github.com/yoshiori/ruboty-irkit"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "ruboty"
-  spec.add_dependency "irkit"
+  spec.add_dependency "httparty"
 
   spec.add_development_dependency "bundler", "~> 1.8"
   spec.add_development_dependency "rake", "~> 10.0"
